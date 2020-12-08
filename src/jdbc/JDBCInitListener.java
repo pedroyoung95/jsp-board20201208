@@ -60,7 +60,10 @@ public class JDBCInitListener implements ServletContextListener {
          } catch(Exception e) {
         	 e.printStackTrace();
          }
-
+         
+         //context root 경로 
+         String contextPath = application.getContextPath();
+         application.setAttribute("appRoot", contextPath);
     }
 	
 }
