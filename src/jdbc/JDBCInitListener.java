@@ -52,6 +52,7 @@ public class JDBCInitListener implements ServletContextListener {
 		}        
          
          //2.DriverManager에서 connection생성 및 try-with블럭으로 autoClose
+         //연결생성하는 클래스를 따로 만들었기 때문에 이 부분은 필요X(해당 url, user, password로 잘 연결되는지 알아보는 용도로만 사용)
          try(
          Connection con = DriverManager.getConnection(url, user, password);
          ) {
