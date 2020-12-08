@@ -5,7 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -25,7 +28,7 @@ public class ControllerUsingURI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private String prefix = "/WEB-INF/view/";
     private String suffix = ".jsp";
-    private Properties properties = null;
+    private Map<String, CommandHandler> map;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,22 +39,33 @@ public class ControllerUsingURI extends HttpServlet {
     
     @Override
     public void init() throws ServletException {
+    	//가장 먼저 시작되는 init메소드안에서 properties에 있는 값들을 읽어오는 과정
+    	map = new HashMap<>();
+    	
     	ServletContext application = getServletContext();
 		String filePath = application.getRealPath("/WEB-INF/commandHandlerURI.properties");
 		
 		try (FileReader fr = new FileReader(filePath);) {
 			Properties properties = new Properties();
 			properties.load(fr);
-			this.properties = properties;
+			
+			Set<Object> keys = properties.keySet();
+			for(Object key : keys) {
+				Object value = properties.get(key);
+				String className = (String) value;
+				
+				try {
+					Class c = Class.forName(className);
+					Object o = c.newInstance();
+					CommandHandler handler = (CommandHandler) o;
+					map.put((String) key, handler);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
-	
-    	super.init();
     }
     
 	/**
@@ -76,16 +90,10 @@ public class ControllerUsingURI extends HttpServlet {
 			command = uri.substring(root.length());
 		}
 		
-		CommandHandler handler = null;
+		CommandHandler handler = map.get(command);
 		
-		String className = properties.getProperty(command);
-		
-		try {
-			Class c = Class.forName(className);
-			Object o = c.newInstance();
-			handler = (CommandHandler) o;
-		} catch(Exception e) {
-			e.printStackTrace();
+		if(handler == null) {
+			handler = new NullHandler();
 		}
 		
 //		int b = 0;
@@ -111,7 +119,7 @@ public class ControllerUsingURI extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.getRequestDispatcher(prefix + view + suffix).forward(request, response);;
+		request.getRequestDispatcher(prefix + view + suffix).forward(request, response);
 		
 	}
 
