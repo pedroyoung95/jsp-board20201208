@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,7 +44,9 @@ public class ControllerUsingURI extends HttpServlet {
     	map = new HashMap<>();
     	
     	ServletContext application = getServletContext();
-		String filePath = application.getRealPath("/WEB-INF/commandHandlerURI.properties");
+    	ServletConfig config = getServletConfig();
+    	String configFilePath = config.getInitParameter("configFile").trim();
+		String filePath = application.getRealPath(configFilePath);
 		
 		try (FileReader fr = new FileReader(filePath);) {
 			Properties properties = new Properties();
