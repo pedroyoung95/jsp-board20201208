@@ -48,6 +48,8 @@ public class ControllerUsingURI extends HttpServlet {
     	String configFilePath = config.getInitParameter("configFile").trim();
 		String filePath = application.getRealPath(configFilePath);
 		
+		//properties를 통해 요청에 따라 알맞는 Controller(여기선 Handler)를 호출
+		//아래 코드는 properties에 저장된 키(사용자가 요청하는 uri), 값(요청한 uri에 따라 실행될 Controller파일)을 Map에 넣는 과정
 		try (FileReader fr = new FileReader(filePath);) {
 			Properties properties = new Properties();
 			properties.load(fr);
@@ -86,6 +88,7 @@ public class ControllerUsingURI extends HttpServlet {
 	}
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//아래 코드는 요청한 uri에서 contextPath를 잘라낸 부분을  Map에 저장된 Controller를 호출하기 위한 명령어처럼 사용하기 위함
 		String uri = request.getRequestURI();
 		String root = request.getContextPath();		
 		String command = "";
@@ -99,29 +102,16 @@ public class ControllerUsingURI extends HttpServlet {
 			handler = new NullHandler();
 		}
 		
-//		int b = 0;
-//		while((b = fr.read()) != -1) {
-//			System.out.print((char) b);
-//		} 파일이 잘 읽히는지 while문으로 확인 함
-		
-//		if(command.equals("/join.do")) {
-//			handler = new JoinHandler();
-//		} else if(command.equals("/login.do")) {
-//			handler = new LoginHandler();
-//		} else if(command.equals("/logout.do")) {
-//			handler = new LogoutHandler();
-//		} else {
-//			handler = new NullHandler();
-//		}
-		
+		//Controller의 처리 결과를 어느 view로 보낼지 결정하는 코드
 		String view = null;
 		try {
-			view = handler.process(request, response);
+			view = handler.process(request, response); //view 변수에 처리 결과를 담음
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		//알맞는 view로 forward하는 코드
+		//Controller에서 redirect하는 경우 process메소드가 null을 리턴함으로써 아래의 forward가 일어나지 않고 Controller의 redirect가 이뤄짐
 		if(view != null) {
 			request.getRequestDispatcher(prefix + view + suffix).forward(request, response);
 		}
