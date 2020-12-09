@@ -38,12 +38,12 @@ public class JoinHandler implements CommandHandler{
 		joinReq.setPassword(req.getParameter("password"));
 		joinReq.setConfirmPassword(req.getParameter("confirmPassword"));
 		
-		//id, name, password, confirmPassword
+		//id, name, password, confirmPassword 입력 관련 오류가 생기면 errors맵에 담김
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		
-		joinReq.validate(errors);
-		
+		joinReq.validate(errors);//입력 관련 오류를 점검하는 메소드->오류가 생기면 errors맵에 put됨
+		//오류가 생겨서 errors맵이 비어있지 않으면 form뷰로 돌아감
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
