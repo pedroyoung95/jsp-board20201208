@@ -3,7 +3,7 @@ package jdbc;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class JbcUtil {
+public class JdbcUtil {
 	
 	public static void rollback(Connection con) {
 		try {

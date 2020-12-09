@@ -43,6 +43,7 @@ public class JoinRequest {
 		//confirmPassword값이 잘 들어왔는지 검사하는 메소드
 		checkEmpty(errors, confirmPassword, "confirmPassword");
 		
+		//password와 confirmPassword가 일치하는지 검사하는 과정
 		if(!errors.containsKey("confirmPassword")) {
 			if(!isPasswordEqualToConfirm()) {
 				errors.put("notMatch", true);
