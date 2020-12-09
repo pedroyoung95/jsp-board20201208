@@ -7,11 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import member.service.JoinRequest;
+import member.service.JoinService;
 import mvc.command.CommandHandler;
 
 public class JoinHandler implements CommandHandler{
 	private static final String FORM_VIEW = "joinForm";
-	//private JoinService joinService = new JoinService();
+	private JoinService joinService = new JoinService();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -47,15 +48,11 @@ public class JoinHandler implements CommandHandler{
 			return FORM_VIEW;
 		}
 		
-//		try {
-//			joinService.join(joinReq);
-//			return "/WEB-INF/view/joinSucess.jsp";
-//		} catch (Exception e) {
-//			errors.put("duplicatedId", Boolean.TRUE);
-//			return FORM_VIEW;
-//			e.printStackTrace();
-//		}
-		
-		return null;
+		try {
+			joinService.join(joinReq);
+			return "joinSuccess";
+		} catch (Exception e) {
+			errors.put("duplicatedId", Boolean.TRUE);
+			return FORM_VIEW;		}
 	}
 }

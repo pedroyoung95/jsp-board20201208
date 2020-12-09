@@ -5,9 +5,11 @@ import java.sql.SQLException;
 
 import jdbc.ConnectionProvider;
 import jdbc.JdbcUtil;
+import member.dao.MemberDao;
 import member.model.Member;
 
 public class JoinService {
+	
 	private MemberDao memberDao = new MemberDao();
 	
 	public void join(JoinRequest joinReq) {
@@ -16,7 +18,7 @@ public class JoinService {
 			con = ConnectionProvider.getConnection();
 			con.setAutoCommit(false);
 			
-			Member m = memberDao.selectById(joinReq.getId());
+			Member m = memberDao.selectById(con, joinReq.getId());
 			
 			if(m != null) {
 				JdbcUtil.rollback(con);
@@ -29,7 +31,7 @@ public class JoinService {
 			member.setName(joinReq.getName());
 			member.setPassword(joinReq.getPassword());
 			
-			memberDao.insert(memeber);
+			memberDao.insert(con, member);
 			
 			con.commit();
 		} catch(SQLException e) {
@@ -38,7 +40,5 @@ public class JoinService {
 		} finally {
 			JdbcUtil.close(con);
 		}
-		
-		
 	}
 }

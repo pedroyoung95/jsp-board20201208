@@ -15,27 +15,17 @@
 </head>
 <body>
 <div class="container">
-	<h1>회원가입</h1>
-	<form action="join.do" method="post">
+	<form action="login.do" method="post">
+	<c:if test="${errors.idOrPwNotMatch }">아이디와 암호가 일치하지 않습니다.</c:if>
 	<p>
 		아이디 : <br /><input type="text" name="id" value="${param.id }" />
 		<c:if test="${errors.id }">ID를 입력하세요</c:if>
-		<c:if test="${errors.duplicateId }">이미 사용중인 아이디입니다.</c:if>
-	</p>
-	<p>
-		이름 : <br /><input type="text" name="name" value="${param.name }" />
-		<c:if test="${errors.name }">이름을 입력하세요.</c:if>
 	</p>
 	<p>
 		암호 : <br /><input type="password" name="password" id="" />
 		<c:if test="${errors.password }">암호를 입력하세요</c:if>
-	</p>
-	<p>
-		확인 : <br /><input type="password" name="confirmPassword" id="" />
-		<c:if test="${errors.confirmPassword }">확인을 입력하세요</c:if>
-		<c:if test="${errors.notMatch }">암호와 확인이 일치하지 않습니다.</c:if>
-	</p>
-	<input type="submit" value="가입" />
+	</p>		
+	<input type="submit" value="로그인" />
 	</form>
 </div>
 </body>
