@@ -15,6 +15,7 @@
 </head>
 <body>
 <div class="container">
+	<h1>로그인하기</h1>
 	<form action="login.do" method="post">
 	<c:if test="${errors.idOrPwNotMatch }">아이디와 암호가 일치하지 않습니다.</c:if>
 	<p>
