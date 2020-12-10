@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
@@ -15,28 +14,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- 
-<c:if test="${! empty authUser }">
-	${authUser.name }님, 안녕하세요.
-	<a href="logout.do">[로그아웃하기]</a>
-	<a href="changePwd.do">[암호변경하기]</a>
-</c:if>
-
-<c:if test="${empty authUser }">
-	<a href="join.do">[회원가입하기]</a>
-	<a href="login.do">[로그인하기]</a>
-</c:if>
---%>
-<u:isLogin>
-	${authUser.name }님, 안녕하세요.
-	<a href="logout.do">[로그아웃하기]</a>
-	<a href="changePwd.do">[암호변경하기]</a>
-	<a href="removeMember.do">[회원 탈퇴하기]</a>
-</u:isLogin>
-
-<u:notLogin>
-	<a href="join.do">[회원가입하기]</a>
-	<a href="login.do">[로그인하기]</a>
-</u:notLogin>
+<div class="container">
+	<h1>회원 탈퇴</h1>
+	<form action="removeMember.do" method="post">
+		<p>
+			암호 : <br /><input type="password" name="password" id="" />
+			<c:if test="${errors.password }">암호를 입력하세요.</c:if>
+			<c:if test="${errors.badPwd }">암호가 일치하지 않습니다.</c:if>
+		</p>
+		<input type="submit" value="탈퇴" />
+	</form>
+</div>
 </body>
 </html>
