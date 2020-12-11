@@ -40,7 +40,7 @@ public class WriteArticleHandler implements CommandHandler{
 		
 		User user = (User) req.getSession(false).getAttribute("authUser");
 		WriteRequest writeReq = createWriteRequest(user, req);
-		writeReq.vlidate(errors);
+		writeReq.validate(errors);
 		
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
