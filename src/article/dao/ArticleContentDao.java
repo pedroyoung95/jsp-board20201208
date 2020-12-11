@@ -11,26 +11,22 @@ public class ArticleContentDao {
 	
 	public ArticleContent insert(Connection conn, ArticleContent content) throws SQLException {
 		
-		PreparedStatement pstmt = null;
 		String sql ="INSERT INTO article_content "
 						+ "(article_no, content) "
 						+ "VALUES(?, ?)";
 		
-		try {
-			pstmt = conn.prepareStatement(sql);
+		try (PreparedStatement pstmt = conn.prepareStatement(sql);){
+			
 			pstmt.setLong(1, content.getNumber());
 			pstmt.setString(2, content.getContent());
 			
-			int insertedCount = pstmt.executeUpdate();
+			int cnt = pstmt.executeUpdate();
 			
-			if(insertedCount > 0) {
+			if(cnt == 1) {
 				return content;
 			} else {
 				return null;
 			}
-			
-		} finally {
-			JdbcUtil.close(pstmt);
-		}
+		} 
 	}
 }
