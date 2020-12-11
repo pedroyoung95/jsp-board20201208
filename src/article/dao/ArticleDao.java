@@ -120,12 +120,8 @@ public class ArticleDao {
 						rs.getString("writer_id"),
 						rs.getString("writer_name")), 
 				rs.getString("title"), 
-				toDate(rs.getTimestamp("regdate")),
-				toDate(rs.getTimestamp("moddate")),
+				rs.getTimestamp("regdate"),
+				rs.getTimestamp("moddate"),
 				rs.getInt("read_cnt"));
-	}
-	
-	private Date toDate(Timestamp timestamp) {
-		return new Date(timestamp.getTime());
 	}
 }
