@@ -44,7 +44,15 @@
 	<c:if test="${articlePage.hasArticles() }">
 		<tr>
 			<td colspan="4">
-				<c:if test="${articlePage.start }"></c:if>
+				<c:if test="${articlePage.startPage > 5}">
+				<a href="list.do?pageNo=${articlePage.startPage-5 }">[이전]</a>
+				</c:if>
+				<c:forEach var="pNo" begin="${articlePage.startPage }" end="${articlePage.endPage }">
+					<a href="list.do?pageNo=${pNo }">[${pNo }]</a>
+				</c:forEach>
+				<c:if test="${articlePage.endPage < articlePage.totalPages }">
+					<a href="list.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
+				</c:if>
 			</td>
 		</tr>
 	</c:if>
