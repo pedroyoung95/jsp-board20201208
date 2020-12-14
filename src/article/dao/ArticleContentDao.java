@@ -48,4 +48,15 @@ public class ArticleContentDao {
 			JdbcUtil.close(pstmt);
 		}		
 	}
+	
+	//ArticleContentDao는 내용수정 쿼리만 실행(title수정 쿼리는 ArticleDao에서 실행)
+	public int update(Connection conn, int no, String content) throws SQLException {
+		String sql = "UPDATE article_content SET content=? "
+						+ "WHERE article_no=?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, content);
+			pstmt.setInt(2, no);
+			return pstmt.executeUpdate();
+		}
+	}
 }

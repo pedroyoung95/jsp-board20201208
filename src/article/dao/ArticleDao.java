@@ -151,4 +151,15 @@ public class ArticleDao {
 			pstmt.executeUpdate();
 		}
 	}
+	
+	//ArticleDao에서는 title수정 쿼리만 실행(내용 수정 쿼리는 ArticleContentDao에서 실행)
+	public int update(Connection conn, int no, String title) throws SQLException {
+		String sql = "UPDATE article SET title=?, moddate=SYSDATE " 
+						+ "WHERE article_no=?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql);) {
+			pstmt.setString(1, title);
+			pstmt.setInt(2, no);
+			return pstmt.executeUpdate();
+		} 
+	}
 }
