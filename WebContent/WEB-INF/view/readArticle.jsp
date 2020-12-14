@@ -33,7 +33,7 @@
 	<tr>
 		<td>내용</td>
 		<td>
-			<u:pre value="${article.content }"/>
+			<u:pre value="${articleData.content.content }"/>
 		</td>
 	</tr>
 	<tr>
