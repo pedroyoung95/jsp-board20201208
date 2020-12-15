@@ -164,7 +164,7 @@ public class ArticleDao {
 	}
 	
 	public void delete(Connection conn, int no) throws SQLException {
-		String sql = "DELECT article WHERE article_no=?";
+		String sql = "DELETE article WHERE article_no=?";
 		try(PreparedStatement pstmt = conn.prepareStatement(sql);) {
 			pstmt.setInt(1, no);
 			pstmt.executeUpdate();
