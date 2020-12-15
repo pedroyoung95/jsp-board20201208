@@ -22,7 +22,7 @@ public class ReadArticleService {
 			}
 			ArticleContent content = contentDao.selectById(conn, articleNum);
 			if(content == null) {
-				throw new ArticleContentNotFountException();
+				throw new ArticleContentNotFoundException();
 			}
 			if(increaseReadCount) {
 				articleDao.increaseReadCount(conn, articleNum); //increaseReadCount파라미터의 값이 true일 때만 조회수 증가
