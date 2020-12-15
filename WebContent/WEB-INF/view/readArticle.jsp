@@ -52,5 +52,6 @@
 로그인 한 경우만 댓글 폼 출력
  --%>
  <u:replyForm articleNo="${articleData.article.number }"/>
+ <u:listReply/>
 </body>
 </html>
