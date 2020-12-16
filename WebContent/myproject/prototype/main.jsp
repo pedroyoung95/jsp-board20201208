@@ -16,11 +16,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<u:navbar2></u:navbar2>
+<u:navbar></u:navbar>
+
 <div class="container">
 	<div class="jumbotron">
-	  <h1 class="display-4">${authUser.name }님, 안녕하세요!</h1>
+	  <h1 class="display-4">Guest님, 안녕하세요!</h1>
 	  <p class="lead">새로운 커뮤니티로 들어오세요!</p>
+	  <i class="fas fa-check-circle"></i>
+		<i class="fas fa-user-clock"></i>
+		<br />
+		<button type="button" class="btn btn-primary">접속상태</button>
 	  <hr class="my-4">
 	  <p>회원가입부터 시작하세요!</p>
 	  <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath }/join.do" role="button">회원가입</a>
