@@ -9,26 +9,36 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<title>메인</title>
+<title>로그인</title>
 </head>
 <body>
 <u:navbar></u:navbar>
 
 <div class="container">
-	<div class="jumbotron">
-	  <h1 class="display-4">Guest님, 안녕하세요!</h1>
-	  <p class="lead">새로운 커뮤니티로 들어오세요!</p>
-	  <i class="fas fa-check-circle"></i>
-	  <i class="fas fa-user-clock"></i>
-	  <br />
-	  <button type="button" class="btn btn-primary">접속상태</button>
-	  <hr class="my-4">
-	  <p>아직 회원이 아니신가요?</p>
-	  <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath }/join.do" role="button">회원가입</a>
+	<div class="row">
+		<div class="col-3"></div>
+		<div class="col-6">
+		<h1>로그인하기</h1>
+		<form action="login.do" method="post">	
+			<div class="form-group">		
+				아이디 : <br /><input type="text"  name="id" value="${param.id }"/>	
+			</div>	
+			<div class="form-group">	
+				비밀번호 : <br /><input type="password" name="password" id="" /> 	
+			</div>		
+			<div class="form-group">
+				<input type="submit" class="btn btn-primary" value="로그인" />
+			</div>
+		</form>	
+		<br />
+		<form action="join.do" method="post">
+			<input type="submit" class="btn btn-primary" value="회원 가입" />
+		</form>
+		</div>
+		<div class="col-3"></div>
 	</div>
 </div>
 </body>
