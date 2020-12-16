@@ -13,10 +13,56 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>게시글 보기</title>
 </head>
 <body>
 <u:navbar></u:navbar>
 
+<div class="container">
+	<div class="row">
+		<div class="col-3"></div>
+		
+		<div class="col-6">
+			<h1>게시글 보기</h1>
+			<table border="1" width="100%">
+				<tr>
+					<td>번호</td>
+					<td>${articleData.article.number }</td>
+				</tr>
+				<tr>
+					<td>작성자</td>
+					<td>${articleData.article.writer.name }</td>
+				</tr>
+				<tr>
+					<td>제목</td>
+					<td>
+						<c:out value="${articleData.article.title }"></c:out>
+					</td>
+				</tr>
+				<tr>
+					<td>내용</td>
+					<td>
+						<u:pre value="${articleData.content.content }"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<c:set var="pageNO" value="${empty param.pageNO ? '1' : param.pageNO }"></c:set>
+						<a href="list.do?pageNo=${pageNO }">[목록]</a>
+						<c:if test="${authUser.id == articleData.article.writer.id }">
+							<a href="modify.do?no=${articleData.article.number }">[게시글 수정]</a>
+							<a href="delete.do?no=${articleData.article.number }">[게시글 삭제]</a>
+						</c:if>
+					</td>
+				</tr>
+			</table>
+			<a href="#">목록</a>
+			<a href="#">게시글 수정</a>
+			<a href="#">게시글 삭제</a>
+		</div>
+		
+		<div class="col-3"></div>
+	</div>
+</div>
 </body>
 </html>

@@ -40,7 +40,6 @@
       <div class="col-3"></div>
       <div class="col-6">
         <h1>게시글 목록</h1>
-
         <div class="list-container">
           <div class="list-header d-flex">
             <div class="list-header-cell num-col">번호</div>
@@ -57,8 +56,6 @@
               <div class="list-body-cell writer-col">${article.writer.name }</div>
             </div>
           </c:forEach>
-
-
         </div>
         
         <nav aria-label="Page navigation example">
