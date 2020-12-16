@@ -18,5 +18,28 @@
 <body>
 <u:navbar></u:navbar>
 
+<div class="container">
+	<div class="row">
+		<div class="col-3"></div>
+		
+		<div class="col-6">
+			<h1>회원 탈퇴</h1>
+			<form action="removeMember.do" method="post">
+				<div class="form-group">
+				<label for="input1-curPwd">암호 </label>
+				<input type="password" name="password" id="" class="form-control"/>
+					
+						<small class="form-text text-danger">암호를 입력하세요.</small>
+					
+						<small class="form-text text-danger">암호가 일치하지 않습니다.</small>
+					
+				</div>
+				<input type="submit" class="btn btn-primary" value="탈퇴" />
+			</form>
+		</div>
+		
+		<div class="col-3"></div>
+	</div>
+</div>
 </body>
 </html>

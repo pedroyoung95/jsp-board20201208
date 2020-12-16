@@ -43,7 +43,7 @@
 				</c:if>
 			</div>	
 				
-			<input type="submit" value="로그인" />
+			<input type="submit" class="btn btn-primary" value="로그인" />
 		</form>
 		</div>
 		

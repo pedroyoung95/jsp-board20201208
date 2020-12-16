@@ -42,7 +42,7 @@
 				<small class="form-text text-danger">새 암호를 입력하세요.</small>
 			</c:if>
 		</div>
-		<input type="submit" value="암호 변경" />
+		<input type="submit" class="btn btn-primary" value="암호 변경" />
 	</form>
 	</div>
 	<div class="col-3"></div>

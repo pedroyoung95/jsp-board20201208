@@ -18,5 +18,24 @@
 <body>
 <u:navbar></u:navbar>
 
+<div class="container">
+	<div class="row">
+		<div class="col-3"></div>
+		
+		<div class="col-6">
+			<h1>게시물 삭제</h1>
+			<form action="delete.do" method="post">			  
+				<div class="form-group">
+					<label for="input1-id">암호</label>
+			      	<input type="password" name="password" class="form-control"/> <br />
+			    	<small class="form-text text-danger">암호가 일치하지 않습니다.</small>
+			    </div>
+			  <input type="submit" value="게시물 삭제" />
+			</form>
+		</div>
+		
+		<div class="col-3"></div>
+	</div>
+</div>
 </body>
 </html>

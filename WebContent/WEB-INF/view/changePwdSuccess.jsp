@@ -19,7 +19,13 @@
 <u:navbar2></u:navbar2>
 
 <div class="container">
-	<h1>암호를 변경했습니다.</h1>
+	<div class="row">
+	<div class="col-3"></div>
+	<div class="col-6">
+		<h1>암호를 변경했습니다.</h1>
+	</div>
+	<div class="col-3"></div>
+	</div>
 </div>
 </body>
 </html>
