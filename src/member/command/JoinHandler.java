@@ -52,7 +52,8 @@ public class JoinHandler implements CommandHandler{
 			joinService.join(joinReq);
 			return "joinSuccess";
 		} catch (Exception e) {
-			errors.put("duplicatedId", Boolean.TRUE);
-			return FORM_VIEW;		}
+			errors.put("duplicatedId", true);
+			return FORM_VIEW;		
+		}
 	}
 }
