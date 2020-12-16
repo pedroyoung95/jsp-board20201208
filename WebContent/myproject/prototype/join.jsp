@@ -18,21 +18,27 @@
 <u:navbar></u:navbar>
 
 <div class="container">
-	<div class="container mx-auto">
+	<div class="row">
+		<div class="col-3"></div>
+		<div class="col-6">
 		<h1>로그인하기</h1>
-		<form action="login.do" method="post">
-			<p>
-			아이디 : <br /><input type="text"  name="id" value="${param.id }"/>
-			</p>
-			<p>
-			비밀번호 : <br /><input type="password" name="password" id="" /> 
-			</p>
-			<input type="submit" class="btn btn-primary" value="로그인" />
+		<form action="login.do" method="post">	
+			<div class="form-group">		
+				아이디 : <br /><input type="text"  name="id" value="${param.id }"/>	
+			</div>	
+			<div class="form-group">	
+				비밀번호 : <br /><input type="password" name="password" id="" /> 	
+			</div>		
+			<div class="form-group">
+				<input type="submit" class="btn btn-primary" value="로그인" />
+			</div>
 		</form>	
 		<br />
 		<form action="join.do" method="post">
 			<input type="submit" class="btn btn-primary" value="회원 가입" />
 		</form>
+		</div>
+		<div class="col-3"></div>
 	</div>
 </div>
 </body>
